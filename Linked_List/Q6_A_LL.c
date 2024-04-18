@@ -86,10 +86,60 @@ int main()
 
 ////////////////////////////////////////////////////////////////////////
 
+// int moveMaxToFront(ListNode **ptrHead)
+// {
+//     /* add your code here */
+// 	ListNode *max, *cur=*ptrHead, *temp ;
+// 	int cnt = 1;
+// 	max = cur;
+// 	cur = cur -> next;
+// 	while ( cur != NULL){
+// 		if (cur -> item > max -> item){
+// 			max = cur;
+// 		}
+// 		cnt += 1;
+// 		cur = cur -> next;
+// 	}
+
+// 	for ( int i = 0 ; i < cnt ; i++){
+// 		cur = cur -> next;
+// 		if(cur -> next -> item == max){
+// 			cur -> next = cur -> next -> next;
+// 		}
+// 	}
+// 	max -> next = *ptrHead;
+
+// }
+
 int moveMaxToFront(ListNode **ptrHead)
 {
-    /* add your code here */
+    if (*ptrHead == NULL || (*ptrHead)->next == NULL) // 빈 리스트 또는 노드가 하나뿐인 경우 처리
+        return 0;
+
+    ListNode *max = *ptrHead;
+    ListNode *cur = (*ptrHead)->next;
+    ListNode *prev = *ptrHead;
+    ListNode *prevMax = NULL; // 최대값의 이전 노드를 저장할 변수 추가
+
+    while (cur != NULL) {
+        if (cur->item > max->item) {
+            max = cur;
+            prevMax = prev; // 최대값의 이전 노드를 저장
+        }
+        prev = cur;
+        cur = cur->next;
+    }
+
+    if (prevMax == NULL) // 최대값이 맨 앞에 있는 경우 처리
+        return 0;
+
+    prevMax->next = max->next; // 최대값을 맨 앞에서 떼어낸다.
+    max->next = *ptrHead; // 최대값을 맨 앞에 붙인다.
+    *ptrHead = max; // 최대값을 새로운 헤드로 설정한다.
+
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////
 

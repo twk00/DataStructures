@@ -112,6 +112,14 @@ int main()
 void removeUntil(Stack *s, int value)
 {
 /* add your code here */
+int cur = 0;
+while(cur != value){
+	cur = pop(s);
+	if(isEmptyStack(s)){
+		break;
+	}
+}
+push(s,cur);
 }
 
 //////////////////////////////////////////////////////////////////////////////////

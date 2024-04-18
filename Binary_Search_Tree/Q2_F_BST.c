@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section F - Binary Search Trees Questions
@@ -91,7 +91,30 @@ int main()
 void inOrderTraversal(BSTNode *root)
 {
 	 /* add your code here */
+	Stack S;
+	BSTNode *temp = root;
+	S.top = NULL;
+	 
+	if(temp == NULL)
+	 	return;
+
+	while(temp != NULL ||!isEmpty(&S)){
+
+		if(temp != NULL){
+			push(&S,temp);
+			temp = temp -> left;
+		}
+		
+		else{
+			temp = pop(&S);
+			printf("%d ",temp ->item);
+			temp = temp -> right;
+		}
+
+	}
 }
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 

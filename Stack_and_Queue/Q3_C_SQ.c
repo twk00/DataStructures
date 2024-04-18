@@ -104,6 +104,32 @@ int main()
 int isStackPairwiseConsecutive(Stack *s)
 {
   /* add your code here */
+  int size = s -> ll.size;
+  int cnt = 0;
+  int cur,prev = 0;
+  if (size % 2 == 0){
+	while (!isEmptyStack(s)){
+		cnt += 1;
+		cur = pop(s);
+		if (cnt == 2){
+			if (prev - cur == 1){
+				prev = 0;
+				cur = 0;
+				cnt = 0;
+			}else{
+				printf("%d",0);
+				return 0;
+			}
+		}
+		prev = cur;
+  	}
+  }else{
+	printf("%d",0);
+	return 0;
+  }
+  printf("%d",1);
+  return 1;
+
 }
 
 //////////////////////////////////////////////////////////////////////////////////

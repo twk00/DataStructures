@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
 
 /* CE1007/CZ1007 Data Structures
 Lab Test: Section F - Binary Search Trees Questions
@@ -89,10 +89,55 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
+// void postOrderIterativeS1(BSTNode *root)
+// {
+// 	/* add your code here */
+// 	Stack S;
+// 	BSTNode *temp = root;
+// 	S.top = NULL;
+// 	int visit = 0;
+// 	push(&S,temp);
+	
+// 	while (!isEmpty(&S)){
+	
+
+
+// 	}
+// }
+
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
+    BSTNode *temp=root;
+    Stack s;
+    s.top = NULL;
+
+    if(temp == NULL)
+        return;
+
+    do
+    {
+        while(temp)
+        {
+            if(temp->right != NULL)
+                push(&s, temp->right);
+            push(&s, temp);
+            temp = temp->left;
+        }
+        temp = pop(&s);
+        if(temp->right == peek(&s))
+        {
+            pop(&s);
+            push(&s, temp);
+            temp = temp->right;
+        }
+        else
+        {
+            printf("%d ", temp->item);
+            temp = NULL;
+        }
+    }while(!isEmpty(&s));
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 

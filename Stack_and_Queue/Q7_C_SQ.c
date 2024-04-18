@@ -104,8 +104,26 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
-}
+	Stack stack;
+	stack.ll.head = NULL;
+	stack.ll.size = 0;
+    char* p = expression;
+
+    while (*p != '\0') {
+        if (*p == '(' || *p == '[' || *p == '{') {
+            push(&stack, *p);
+        } else if (*p == ')' || *p == ']' || *p == '}') {
+            if (isEmptyStack(&stack)) {
+                return 0;
+            }
+            char top = pop(&stack);
+            if ((*p == ')' && top != '(') || (*p == ']' && top != '[') || (*p == '}' && top != '{')) {
+                return 0;
+            }
+        }
+        p++;
+    }
+    return isEmptyStack(&stack);}
 
 ////////////////////////////////////////////////////////////
 

@@ -102,7 +102,22 @@ int main()
 
 int smallestValue(BTNode *node)
 {
-	/* add your code here */
+
+    if (node == NULL)
+        return  __INT32_MAX__;
+
+    int checkRight = smallestValue(node -> right);
+    int checkLeft = smallestValue(node -> left);
+    int min = node->item;
+    
+    if ( checkLeft < min )
+        min  = checkLeft;
+    
+    if ( checkRight < min ) 
+        min = checkRight;
+    
+    return min;
+  
 }
 
 //////////////////////////////////////////////////////////////////////////////////
